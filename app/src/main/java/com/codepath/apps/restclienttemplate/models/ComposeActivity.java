@@ -3,9 +3,11 @@ package com.codepath.apps.restclienttemplate.models;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
@@ -32,7 +34,15 @@ public class ComposeActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //max length for the tweet and initializing new tweet
+                int maxLength= 140;
                 EditText newTweet = findViewById(R.id.newTweet);
+
+                LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                newTweet.setLayoutParams(params);
+                newTweet.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+
+
                 //get tweet body
                 final String tweetBody = newTweet.getText().toString();
 
