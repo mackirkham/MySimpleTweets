@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".models.ComposeActivity">
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="140">
+
     <EditText
         android:id="@+id/newTweet"
         android:layout_width="match_parent"
@@ -14,25 +21,18 @@
         android:layout_alignParentTop="true"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:maxLength="140"
         android:text="" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="126dp"
         android:background="#00BFFF"
         android:text="Tweet" />
 
-    <TextView
-        android:id="@+id/word_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="137dp"
-        android:layout_toStartOf="@+id/button"
-        android:text="TextView" />
 </RelativeLayout>
