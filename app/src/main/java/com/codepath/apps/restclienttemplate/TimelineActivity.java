@@ -2,12 +2,15 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.ComposeActivity;
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -28,6 +31,8 @@ public class TimelineActivity extends AppCompatActivity {
     TweetAdapter tweetAdapter;
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
+    SwipeRefreshLayout swipeLayout;
+
     private final int RESULT_OK = 4;
     private final int RESULT_CODE = 4;
 
@@ -35,6 +40,33 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+
+        // Getting SwipeContainerLayout
+        swipeLayout = findViewById(R.id.swipe_container);
+        // Adding Listener
+        swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code here
+                Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
+                // To keep animation for 4 seconds
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        // Stop animation (This will be after 3 seconds)
+                        swipeLayout.setRefreshing(false);
+                    }
+                }, 4000); // Delay in millis
+            }
+        });
+
+        // Scheme colors for animation
+        swipeLayout.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
+
 
         client = TwitterApp.getRestClient(this);
 
