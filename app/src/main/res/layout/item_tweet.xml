@@ -31,6 +31,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_toEndOf="@+id/ivProfileImage"
+        android:drawableBottom="@drawable/ic_vector_retweet"
+        android:drawableRight="@drawable/ic_vector_heart_stroke"
         android:text="TextView" />
 
     <TextView
